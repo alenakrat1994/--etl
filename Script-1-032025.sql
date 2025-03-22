@@ -411,6 +411,24 @@ left join detail.common_table c2 on ct.replaced_id=c2.id
 left join detail.function_type_list f on ct.function_type_id=f.id 
 ORDER BY ct.id;
 
+select ct.id, f.function_type,	
+	ct.function_name,	
+	ct.what_is_doing, 
+	d.dbms_type,	
+	ct.parameters,
+	ct.info,
+	ct.examples,	
+	di1.d_level as difficulty_understanding,
+	di2.d_level as difficulty_using,
+	ct.basic text,
+	c2.function_name as replaced_by
+from detail.dbms d right join detail.common_table ct on d.id=ct.dbms_id 
+left join detail.difficulty di1 on ct.difficulty_understanding_level=di1.id
+left join detail.difficulty di2 on ct.difficulty_using_level=di2.id
+left join detail.common_table c2 on ct.replaced_id=c2.id
+left join detail.function_type_list f on ct.function_type_id=f.id 
+ORDER BY ct.id;
+
 
 
 
